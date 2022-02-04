@@ -1,4 +1,5 @@
 @startuml
+interface IField
 abstract class Field
 abstract class Property
 interface IO
@@ -9,10 +10,12 @@ Main "1" *-- "2...6" Player : has
 Main "1" *-- "1" UI : has
 Main *-- Board : has
 Player *-- BankAccount : has
+IField <|-- Field : is-a
+
 Field <|-- Consequence : is-a
 Field <|-- Property : is-a
 
-Board *-- Field : has
+Board *-- IField : has
 Consequence <|-- Tax : is-a
 Consequence <|-- Start : is-a
 Property <|-- Plot : is-a
@@ -57,15 +60,17 @@ Field : - String label
 Field : - int id
 Field : - int cost
 Field : - int income
-Field : + String onLand()
-Field : + void processResponse()
-Field : + String toString()
+IField : + String onLand()
+IField : + void processResponse()
+IField : + String toString()
+
 
 Property : int seriesID
 Property : String onLand()
 Property : onAccept()
 Property : onReject()
 Property : + String toString()
+
 
 
 
