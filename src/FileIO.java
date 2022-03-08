@@ -8,7 +8,7 @@ public class FileIO {
 
     ArrayList<String> readGameData(){
 
-        File file = new File("src/data.txt");
+        File file = new File("src/_data.txt");
         ArrayList<String> data = new ArrayList<>();
 
         try {
@@ -17,7 +17,12 @@ public class FileIO {
                 data.add(scan.nextLine());//“Egon: 30000”
             }
         }catch(FileNotFoundException e){
-            e.printStackTrace();
+
+
+            data = null;
+
+
+
         }
         return data;
     }

@@ -9,10 +9,12 @@
 class Main
 
 Main *-- "*" Game
+Main : Game game
 Main : static main(String[] args)
 'Main : ArrayList<Game> games
 'Game *-- "1" FileIO
 Game  *-- "2...6" Player : has-a
+Game  *-- "1" FileIO : has-a
 'Game  *-- "1" TextUI : has-a
 /'Game *-- "1" Board : has-a'/
 Player *-- BankAccount : has-a
@@ -33,16 +35,13 @@ IO <|-- DBConnector: implements'/
 'Game :  TextUI textUI
 'Game :  FileIO fileIO
 'Game :  Board board
-Game :  ArrayList<Player> players
+Game :  + ArrayList<Player> players
+Game :  - FileIO fileIO
 'Game :  Player currentPlayer
 'Game :  final int MAX
 
 
-Game :  boolean hasGameData()
-Game :  void runLoop()
-Game :  void takeTurn()
-Game :  void printAccounts()
-Game :  void saveGamedata()
+Game :  Game()
 
 'Board : ArrayList<Field> fields
 'Board : Dice dice
@@ -75,19 +74,18 @@ Consequence : onAccept()
 Consequence : onReject()
 Consequence : + String toString()'/
 
-Player : BankAccount account
-Player : String name
+Player : - BankAccount account
+Player : - String name
 Player : Player(String name, int balance)
-'€Player : void receiveMoney(int amount)
+'Player : void receiveMoney(int amount)
 'Player : void payMoney(int amount)
 'Player : void updatePosition()
-Player : String toString()
-Player : int getBalance()
-Player : String getName()
+Player : +String toString()
+Player : +int getBalance()
+Player : +String getName()
 
 FileIO : ArrayList <String> readGameData()
-FileIO : String[] readFieldData()
-FileIO : void saveGamedata()
+
 @enduml
 
 

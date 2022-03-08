@@ -1,0 +1,20 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:Main.main();
+:new Game();
+if (fileIO.readGameData()) then (succes)
+
+   else (failure)
+     :textUI.getPlayerNames();
+
+
+      endif
+
+:game.createPlayers();
+
+
+stop
+
+@enduml
