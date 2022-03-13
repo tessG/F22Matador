@@ -11,7 +11,6 @@ public class Game {
 
 
         ArrayList<String> data = new ArrayList<>();
-
         data =  fileIO.readGameData();
         // på hver plads i data står der et navn og en saldo fx. "Tobias: 30000"
         if(data == null){
@@ -19,7 +18,7 @@ public class Game {
             //hent data fra brugerinterfacet dvs. spørg brugeren
            data = textUI.getPlayerNames("Skriv spillernavn. Tast Q for at quitte");
         }
-            createPlayers(data);
+            this.createPlayers(data);
 
     }
 
@@ -29,7 +28,8 @@ public class Game {
 
              String[] values = s.split(": "); //split arrayet så vi får adskildt de to værdier
 
-             int balance = Integer.parseInt(values[1]); // konverter saldoen til en int
+            int balance = Integer.parseInt(values[1]); // todo: hvis values[1] == null, skal den sættes til 30000 (maxbeløb)
+          //   int balance = Integer.parseInt("30000");
 
              Player p = new Player(values[0], balance); // brug de to værdier til at lave en ny Player instans
 
@@ -37,6 +37,9 @@ public class Game {
 
          }
 
+     }
+     public String getPlayers(){
+        return this.players.toString();
      }
 
 }

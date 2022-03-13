@@ -34,7 +34,7 @@ public class Main {
 	    // instantier Game
         game = new Game();
 
-       // System.out.println(game.players);
+        System.out.println(game.players);
 
     }
 

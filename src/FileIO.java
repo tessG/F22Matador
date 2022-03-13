@@ -8,7 +8,7 @@ public class FileIO {
 
     ArrayList<String> readGameData(){
 
-        File file = new File("src/_data.txt");
+        File file = new File("src/data.txt");
         ArrayList<String> data = new ArrayList<>();
 
         try {
