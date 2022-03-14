@@ -8,17 +8,10 @@ public class Game {
 
     public Game(){
 
-
-
+    //**********************
+    // Vi loader spiller data:
+    // **********************
         ArrayList<String> data = new ArrayList<>();
-
-//  Gruppens arbejde
-        ArrayList<String> field = new ArrayList<>();
-        field = fileIO.readFieldData();
-
-        Board board = new Board();
-
-
         data =  fileIO.readGameData();
         // på hver plads i data står der et navn og en saldo fx. "Tobias: 30000"
         if(data == null){
@@ -28,7 +21,13 @@ public class Game {
         }
             this.createPlayers(data);
 
+        //**********************
+        // Vi felt  data:
+        // **********************
 
+        String[] fieldData = fileIO.readFieldData();
+        System.out.println(fieldData[fieldData.length-1]);
+         Board board = new Board();
 
 
 

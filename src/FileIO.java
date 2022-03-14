@@ -7,7 +7,7 @@ public class FileIO {
 
 
     ArrayList<String> readGameData() {
-        File file = new File("src/data_.txt");
+        File file = new File("src/data.txt");
         ArrayList<String> data = new ArrayList<>();
         try {
             Scanner scan = new Scanner(file);
@@ -21,22 +21,30 @@ public class FileIO {
     }
 
 
-    //Gruppens arbejde:
-  /*  ArrayList<String> readFieldData() {
 
-        File file = new File("Field.txt");
-        ArrayList<String> field = new ArrayList<>();
+
+    //Gruppens arbejde:
+    public String[] readFieldData() {
+
+        File file = new File("src/fieldData.csv");
+        String[] data = new String[40];
 
         try {
             Scanner scan = new Scanner(file);
+            int i = 0; //counter variabel
+
+           String header = scan.nextLine();//Ignorer header
+            System.out.println(header);
             while (scan.hasNextLine()) {
-                field.add(scan.nextLine());
+                data[i]=scan.nextLine();
+                i++;
+               // data.add();
             }
         } catch (FileNotFoundException e) {
 
-            field = null;
+            data = null;
 
         }
-        return field;
-}*/
+        return data;
+        }
 }

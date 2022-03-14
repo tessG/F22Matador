@@ -12,15 +12,17 @@ public class TextUI {
         Scanner scan = new Scanner(System.in);
 
 
-        while(data.size() <= 6){
+        while(data.size() < 6){
             System.out.println(message);
 
             input = scan.nextLine(); //Programmet går i stå og venter på at brugeren taster enter
-            if(input.equalsIgnoreCase("Q")){
-                break;
-            }
+         //MED MINDRE
+            if(input.equalsIgnoreCase("Q")) {
+               break;
+               }
             data.add(input);
-        };
+
+        }
 
         return data;
 
