@@ -11,6 +11,14 @@ public class Game {
 
 
         ArrayList<String> data = new ArrayList<>();
+
+//  Gruppens arbejde
+        ArrayList<String> field = new ArrayList<>();
+        field = fileIO.readFieldData();
+
+        Board board = new Board();
+
+
         data =  fileIO.readGameData();
         // på hver plads i data står der et navn og en saldo fx. "Tobias: 30000"
         if(data == null){
@@ -20,6 +28,10 @@ public class Game {
         }
             this.createPlayers(data);
 
+
+
+
+
     }
 
      private void createPlayers(ArrayList<String> data){
@@ -27,10 +39,14 @@ public class Game {
          for (String s : data) {
 
              String[] values = s.split(": "); //split arrayet så vi får adskildt de to værdier
+             int balance;
 
-            int balance = Integer.parseInt(values[1]); // todo: hvis values[1] == null, skal den sættes til 30000 (maxbeløb)
-          //   int balance = Integer.parseInt("30000");
+             if (values.length > 1) {
+                balance = Integer.parseInt(values[1]); // todo: hvis values[1] == null, skal den sættes til 30000 (maxbeløb)
 
+             } else {
+                 balance = Integer.parseInt("30000");
+             }
              Player p = new Player(values[0], balance); // brug de to værdier til at lave en ny Player instans
 
              players.add(p);                            // tilføj Player instansen til array'et af spillere
@@ -38,7 +54,40 @@ public class Game {
          }
 
      }
-     public String getPlayers(){
+
+
+    /**
+     * Kast terninger
+     * Vis hvad der blev slået
+     * opdater spillerens position på brættet
+     * Få fat i feltet spilleren er landet på
+     * Få fat i den besked spilleren skal se når han lander på det felt
+     * Vis beskeden og gem spillerens svar
+     * send svaret til feltet
+     * vis spillerens saldo
+     *
+     */
+  /*  private void doTurn(){
+        Player currentPlayer = players.get(0); //til test anvender vi bare den første spiller i arrayet
+        int diceValue = dice.rollDiceSum();
+        textUI.displayMessage(currentPlayer.getName() + (" slog " + diceValue));
+        //"Kjeld slog 3"
+        int currentPosition =  currentPlayer.updatePosition(diceValue);
+        Field f = board.getField(currentPosition); //
+        String decisionRequest = f.onLand();
+        String onResponseMessage = "";
+        if(f.currentOption != null){
+            String response = textUI.getUserInput(decisionRequest);
+            //"Kjeld er landet på Hvidovrevej"
+            onResponseMessage = f.processesResponse(response); //"Handling accepteret"
+        }
+        textUI.displayMessage(onResponseMessage+"\n"+currentPlayer.getName()+"'s saldo: "+currentPlayer.getBalance());
+        //Handling accepteret
+        //Kjeld's saldo: 28000
+    }*/
+
+
+    public String getPlayers(){
         return this.players.toString();
      }
 
