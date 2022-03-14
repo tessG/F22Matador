@@ -43,6 +43,12 @@ Game "1" *-- "1" Board
 Game : - Board board
 Game : - void createBoard(String[] data)
 Game : + Board getBoard()
+Game : - void doTurn()
+Game "1" *-- "1" Dice
+
+Dice : int[] rollDice()
+Dice : int rollDiceSum()
+
 Board : Board(String[] data)
 FileIO : +String[]                     readFieldData()
 Board *-- "40" Field
@@ -59,19 +65,24 @@ Field : -Player owner
 'metoder
 Field : Field(int ID, String label, int cost, int income, int seriesID );
 Field : +String onLand(Player player)
-Field : +String onAccept(Player player)
-Field : +onReject(Player player)
+Field : +String onProcess(String response)
+Field : -String onAccept(Player player)
+Field : -onReject(Player player)
 Field : +String toString()
 
 Board : - Field[] fields;
 Board : - void createFields(String [] data)
 Board : + Field getField(int id)
+
 Player : - int currentPosition
+Player : + int updatePosition(int diceValue)
 Player : + void payRent(int amount, Player recipient)
 Player : + void buyProperty(int amount, int id)
 'method for receiving tax, bonus or rent
 Player : + void receiveMoney(int amount)
 Player : + int getPosition()
 
+TextUI : +void displayMessage(String message)
+TextUI : +String getUserInput(String message)
 
 @enduml
