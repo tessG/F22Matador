@@ -26,9 +26,11 @@ public class Game {
         // **********************
 
         String[] fieldData = fileIO.readFieldData();
-        System.out.println(fieldData[fieldData.length-1]);
-         Board board = new Board();
+       // System.out.println(fieldData[fieldData.length-1]);
 
+
+        Board board = new Board(fieldData);
+        System.out.println(board.getField(39));
 
 
     }
