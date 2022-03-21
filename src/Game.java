@@ -5,9 +5,10 @@ public class Game {
     ArrayList<Player> players = new ArrayList<>();
     private FileIO fileIO= new FileIO();
     private TextUI textUI = new TextUI();
+    private Dice dice = new Dice();
+    private Player currentPlayer;
 
     public Game(){
-
     //**********************
     // Vi loader spiller data:
     // **********************
@@ -20,18 +21,23 @@ public class Game {
            data = textUI.getPlayerNames("Skriv spillernavn. Tast Q for at quitte");
         }
             this.createPlayers(data);
-
         //**********************
-        // Vi felt  data:
+        // Vi loader felt  data:
         // **********************
-
         String[] fieldData = fileIO.readFieldData();
        // System.out.println(fieldData[fieldData.length-1]);
-
-
         Board board = new Board(fieldData);
-        System.out.println(board.getField(39));
+     //   System.out.println(board.getField(30));
 
+        //gameloop
+        this.currentPlayer = this.players.get(0);
+        takeTurn();
+    }
+
+
+    private void takeTurn(){
+        int value =  dice.rollDiceSum();
+        textUI.displayMessage(this.currentPlayer.getName()+" slog "+value);
 
     }
 

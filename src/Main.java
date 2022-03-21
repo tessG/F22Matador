@@ -31,6 +31,7 @@ public class Main {
     public static void main(String[] args) {
 	    // instantier Game
         game = new Game();
+      //  game.startGame();
         System.out.println(game.players);
     }
 
