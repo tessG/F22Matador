@@ -22,7 +22,8 @@ public class Board {
     }
 
     public Field getField(int num){
-        return fields[num];
+
+        return fields[num-1];
     }
 
 }

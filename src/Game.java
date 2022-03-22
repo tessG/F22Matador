@@ -27,11 +27,12 @@ public class Game {
         String[] fieldData = fileIO.readFieldData();
        // System.out.println(fieldData[fieldData.length-1]);
         Board board = new Board(fieldData);
-     //   System.out.println(board.getField(30));
+        System.out.println(board.getField(11));
 
         //gameloop
         this.currentPlayer = this.players.get(0);
-        takeTurn();
+
+         takeTurn();
     }
 
 
