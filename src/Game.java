@@ -7,6 +7,7 @@ public class Game {
     private TextUI textUI = new TextUI();
     private Dice dice = new Dice();
     private Player currentPlayer;
+    Board board;
 
     public Game(){
     //**********************
@@ -25,27 +26,40 @@ public class Game {
         // Vi loader felt  data:
         // **********************
         String[] fieldData = fileIO.readFieldData();
-       // System.out.println(fieldData[fieldData.length-1]);
-        Board board = new Board(fieldData);
-        System.out.println(board.getField(11));
+        board = new Board(fieldData);
+       // System.out.println(board.getField(11));
 
         //gameloop
         this.currentPlayer = this.players.get(0);
-
-         takeTurn();
+        takeTurn();
     }
 
+    /**
+     * Kast terninger
+     * Vis hvad der blev slået
+     * opdater spillerens position på brættet
+     * Få fat i feltet spilleren er landet på
+     * Få fat i den besked spilleren skal se når han lander på det felt
+     * Vis beskeden og afvent spillerens svar
+     * modtag og send svaret til feltet
+     * vis spillerens saldo
+     */
 
     private void takeTurn(){
-        int value =  dice.rollDiceSum();
-        textUI.displayMessage(this.currentPlayer.getName()+" slog "+value);
+        int diceValue =  1;//dice.rollDiceSum();
+        textUI.displayMessage(this.currentPlayer.getName()+" slog "+diceValue);
+        int position = currentPlayer.updatePosition(diceValue);
+        Field f = board.getField(position);
+        String decisionRequest = f.onLand(currentPlayer);
 
+        String response = textUI.getUserInput(decisionRequest);
+        String processedResponse = f.processResponse(currentPlayer, response);
+        System.out.println(processedResponse);
     }
 
      private void createPlayers(ArrayList<String> data){
 
          for (String s : data) {
-
              String[] values = s.split(": "); //split arrayet så vi får adskildt de to værdier
              int balance;
 

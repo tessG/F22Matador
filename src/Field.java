@@ -1,90 +1,42 @@
-import java.util.Optional;
-
-public class Field {
-    private String label;
+abstract public class Field {
+    protected String label;
     private String fieldType; // skal fjernes senere
-    private int id;
-    private int cost;
-    private int income;
-    private int seriesID;
-    private Player owner;
-    //Feltet minde om hvad for en dialog den har med spilleren
-    private String currentOption;
+    protected int id;
+    protected int cost;
+    protected int income;
 
-    public Field(int id, String label, String fieldType, int cost, int income, int seriesID) {
+
+
+    //Feltet minder om hvad for en dialog den har med spilleren
+    protected String currentOption;
+
+    public Field(int id, String label, int cost, int income) {
         this.id = id;
         this.label = label;
-        this.fieldType = fieldType;
+      //  this.fieldType = fieldType;
         this.cost = cost;
         this.income = income;
-        this.seriesID = seriesID;
+
     }
 
     public String onLand(Player player) {
-        String message = "";
+        String message = "Du er  landet på "+this.toString()+"\n";
 
-        switch (fieldType) {
-            case "Plot":
-                if (owner == null) {
-                    currentOption = "buy";
-                    message = "Vil du købe? Y for ja, N for nej";
-                } else if (owner == player) {
-                    currentOption = "build"; //Currentoption build
-                    message = "Du ejer denne grund, vil du opgradere dit grund? Y for ja, N for nej";
-                } else {
-                    currentOption = "payRent"; //Currentoption payRent
-                    message = "Betal husleje";
-                }
-                break;
-            case "Chance":
-                message = this.label;
-                break;
-            case "Start":
-                message = "Tag startbeløb";
-                break;
-            case "Tax":
-                message = "Betal skat";
-                break;
-            case "ShippingLine":
-                message = "Shippingline";
-                break;
-            case "Parking":
-                message = "Parker her gratis i en runde";
-                break;
-            case "Brewery":
-                message = "Brewery";
-                break;
-            case "Prison":
-                message = "Gå i fængsel";
-                break;
-        }
         return message;
     }
 
-    public String onProceess(Player player, String response) {
+    public String processResponse(Player player, String response) {
+        String message = "";
         if (response.equalsIgnoreCase("Y")) {
-            this.onAccept(player);
+            message =  this.onAccept(player);
         } else {
-            this.onReject(player);
-        }
-        return null;
-    }
-
-    private String onAccept(Player player) {
-        String message = "";
-        if (this.currentOption.equals("buy")) {
-            message = (player.getName() + " decided to buy");
-            owner = player;
-            //player.buyProperty(cost);
+            message =  this.onReject(player);
         }
         return message;
     }
 
-    private void onReject(Player player) {
-        if (this.currentOption.equals("buy")) {
-            System.out.println(player.getName() + " decided NOT to buy");
-        }
-    }
+    abstract protected String onAccept(Player player);
+    abstract protected String onReject(Player player);
 
     @Override
     public String toString() {

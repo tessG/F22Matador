@@ -15,8 +15,34 @@ public class Board {
             int cost = Integer.parseInt(tmpData[3]);
             int income = Integer.parseInt(tmpData[4]);
             int seriesID = Integer.parseInt(tmpData[5]);
+            String fieldType = tmpData[1];
 
-            Field field = new Field(ID, tmpData[2], tmpData[1] , cost, income, seriesID);
+
+
+
+            Field field = null;
+
+            switch(fieldType){
+                case "Plot":
+                        field = new Plot(ID, tmpData[2], cost, income, seriesID);
+                        break;
+
+                case "Business":
+                        field = new Business(ID, tmpData[2], cost, income, seriesID);
+                        break;
+
+                case "Tax":
+                        field = new Tax(ID, tmpData[2], cost, income);
+                        break;
+
+                        //alle felttyper instansieres  her
+            }
+
+
+
+
+
+
             fields[i] = field;
         }
     }
