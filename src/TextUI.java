@@ -8,7 +8,7 @@ public class TextUI {
         ArrayList<String> data = new ArrayList<>();
         //Vis brugeren beskeden
 
-        String input = "";
+        String input;
         Scanner scan = new Scanner(System.in);
 
 
@@ -41,11 +41,15 @@ public class TextUI {
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
 
-        if(!input.equalsIgnoreCase("Y")&& !input.equalsIgnoreCase("N"))
+       /* This inputvalidation creates too strong a connection to the takeTurn usecase where the user can only give Y or N as a response
+       * If this method should be usable throughout the game, then the valid responses need to be dynamically set and tested
+       */
+
+      /* if(!input.equalsIgnoreCase("Y")&& !input.equalsIgnoreCase("N"))
         {
             System.out.println("Dit svar er ikke gyldigt. Dit svar skal være y eller n. Prøv igen");
             getUserInput(message);
-        }
+        }*/
 
         return input;
     }
