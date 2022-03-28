@@ -16,7 +16,7 @@ public class Game {
     }
 
     private void endGame() {
-        fileIO.saveGame(players);
+      //  fileIO.saveGame(players);
     }
 
 
@@ -41,15 +41,15 @@ public class Game {
         // **********************
         ArrayList<String> data;
         data =  fileIO.readGameData();
-        // på hver plads i data står der et navn og en saldo fx. "Tobias: 30000"
         if(data == null){
             System.out.println("vi fandt ikke noget data, spørg brugeren");
-            //hent data fra brugerinterfacet dvs. spørg brugeren
             data = textUI.getPlayerNames("Skriv spillernavn. Tast Q for at quitte");
         }
         this.createPlayers(data);
+
+
         //**********************
-        // Load af felt  data
+        // Load af felt data
         // **********************
         String[] fieldData = fileIO.readFieldData();
         board = new Board(fieldData);
@@ -79,25 +79,25 @@ public class Game {
         System.out.println(processedResponse);
     }
 
-     private void createPlayers(ArrayList<String> data){
+    private void createPlayers(ArrayList<String> data){
 
-         for (String s : data) {
-             String[] values = s.split(": "); //split arrayet så vi får adskildt de to værdier
-             int balance;
+        for (String s : data) {
+            String[] values = s.split(": "); //split arrayet så vi får adskildt de to værdier
+            int balance;
 
-             if (values.length > 1) {
+            if (values.length > 1) {
                 balance = Integer.parseInt(values[1]); // todo: hvis values[1] == null, skal den sættes til 30000 (maxbeløb)
 
-             } else {
-                 balance = Integer.parseInt("30000");
-             }
-             Player p = new Player(values[0], balance); // brug de to værdier til at lave en ny Player instans
+            } else {
+                balance = Integer.parseInt("30000");
+            }
+            Player p = new Player(values[0], balance); // brug de to værdier til at lave en ny Player instans
 
-             players.add(p);                            // tilføj Player instansen til array'et af spillere
+            players.add(p);                            // tilføj Player instansen til array'et af spillere
 
-         }
+        }
 
-     }
+    }
 
 
     /**
@@ -133,6 +133,6 @@ public class Game {
 
     public String getPlayers(){
         return this.players.toString();
-     }
+    }
 
 }
