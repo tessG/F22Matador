@@ -9,29 +9,51 @@ public class Game {
     private Player currentPlayer;
     Board board;
 
-    public Game(){
-    //**********************
-    // Vi loader spiller data:
-    // **********************
-        ArrayList<String> data = new ArrayList<>();
+    public Game() {
+        gameSetup();
+        runGameLoop();
+        endGame();
+    }
+
+    private void endGame() {
+        fileIO.saveGame(players);
+    }
+
+
+    private void runGameLoop() {
+        int next = 0;
+        String input = "";
+        while (!input.equalsIgnoreCase("Q")){
+
+            this.currentPlayer = this.players.get(next);
+            textUI.displayMessage(this.currentPlayer + "'s tur");
+            takeTurn();
+            next++;
+            input = textUI.getUserInput("Klar til en ny runde? \n Tast C for continue eller Q for quit" );
+
+        }
+        textUI.displayMessage("Tak for denne gang");
+    }
+
+    private void gameSetup() {
+        //**********************
+        // Vi loader spiller data:
+        // **********************
+        ArrayList<String> data;
         data =  fileIO.readGameData();
         // på hver plads i data står der et navn og en saldo fx. "Tobias: 30000"
         if(data == null){
             System.out.println("vi fandt ikke noget data, spørg brugeren");
             //hent data fra brugerinterfacet dvs. spørg brugeren
-           data = textUI.getPlayerNames("Skriv spillernavn. Tast Q for at quitte");
+            data = textUI.getPlayerNames("Skriv spillernavn. Tast Q for at quitte");
         }
-            this.createPlayers(data);
+        this.createPlayers(data);
         //**********************
         // Vi loader felt  data:
         // **********************
         String[] fieldData = fileIO.readFieldData();
         board = new Board(fieldData);
-       // System.out.println(board.getField(11));
 
-        //gameloop
-        this.currentPlayer = this.players.get(0);
-        takeTurn();
     }
 
     /**
