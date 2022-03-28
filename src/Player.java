@@ -46,7 +46,7 @@ public class Player {
         this.account.doTransaction(amount);
     }
 
-    private void payRent(int amount, Player recipient){
+    public void payRent(int amount, Player recipient){
         boolean result = this.account.doTransaction(-amount);
         if (result) {
             recipient.account.doTransaction(amount);
