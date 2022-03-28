@@ -1,5 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -47,4 +49,30 @@ public class FileIO {
         }
         return data;
         }
+
+    public void saveGame(ArrayList<Player> players) {
+
+        StringBuilder data = new StringBuilder();
+        for(Player p : players){
+            data.append(p.getName()).append(":").append(p.getBalance()).append(":").append(p.getCurrentPosition()).append("\n");
+        }
+        FileWriter writer= null;
+
+        try {
+            writer = new FileWriter("src/data.txt");
+            writer.write(data.toString());
+
+        }catch (IOException e){
+            System.out.println("Could not write to file");
+        } finally {
+            try {
+                if (writer != null) {
+                    writer.close();
+                }
+            } catch (NullPointerException | IOException e) {
+                System.out.println("Couldn't close the FileWriter in saveGameData()");
+                e.printStackTrace();
+          }
+       }
+    }
 }
