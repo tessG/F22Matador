@@ -37,7 +37,7 @@ public class Game {
 
     private void gameSetup() {
         //**********************
-        // Vi loader spiller data:
+        // Load af spiller data
         // **********************
         ArrayList<String> data;
         data =  fileIO.readGameData();
@@ -49,7 +49,7 @@ public class Game {
         }
         this.createPlayers(data);
         //**********************
-        // Vi loader felt  data:
+        // Load af felt  data
         // **********************
         String[] fieldData = fileIO.readFieldData();
         board = new Board(fieldData);
