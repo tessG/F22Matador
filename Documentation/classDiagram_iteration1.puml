@@ -1,0 +1,88 @@
+@startuml
+
+class Main
+class Game
+class Player
+class BankAccount
+class FileIO
+class TextUI
+class Board
+
+Main *-- "*" Game: has-a
+Game  *-- "2...6" Player : has-a
+Player *-- BankAccount : has-a
+Game *-- FileIO: has-a
+Game *-- TextUI: has-a
+
+Main : static main(String[] args)
+Game :  +ArrayList<Player> players
+Game :  -FileIO fileIO
+Game :  +Game()
+Game : - void createPlayers(ArrayList<String> data)
+
+
+Player : -BankAccount account
+Player : -String name
+Player : Player(String name, int balance)
+Player : +String toString()
+Player : +int getBalance()
+Player : +String getName()
+Player : -ArrayList<Field> deeds
+Player *-- "0..28"  Field
+
+FileIO : + ArrayList<String> readGameData(String path)
+TextUI : + ArrayList<String> getPlayerNames(String message)
+BankAccount : BankAccount(int balance)
+BankAccount : -int balance
+BankAccount : +boolean doTransaction(int amount)
+BankAccount : +int getBalance()
+
+'* NYT *'
+
+Game "1" *-- "1" Board
+Game : - Board board
+Game : - void createBoard(String[] data)
+Game : + Board getBoard()
+Game : - void doTurn()
+Game "1" *-- "1" Dice
+
+Dice : int[] rollDice()
+Dice : int rollDiceSum()
+
+Board : Board(String[] data)
+FileIO : +String[]                     readFieldData()
+Board *-- "40" Field
+
+'relevant for alle felter
+Field : -String label
+Field : -int ID
+'kun relevant for ting der involverer penge
+Field : -int cost
+Field : -int income
+'kun relevant for ting der kan købes
+Field : -int seriesID
+Field : -Player owner
+'metoder
+Field : Field(int ID, String label, int cost, int income, int seriesID );
+Field : +String onLand(Player player)
+Field : +String onProcess(String response)
+Field : -String onAccept(Player player)
+Field : -onReject(Player player)
+Field : +String toString()
+
+Board : - Field[] fields;
+Board : - void createFields(String [] data)
+Board : + Field getField(int id)
+
+Player : - int currentPosition
+Player : + int updatePosition(int diceValue)
+Player : + void payRent(int amount, Player recipient)
+Player : + void buyProperty(int amount, int id)
+'method for receiving tax, bonus or rent
+Player : + void receiveMoney(int amount)
+Player : + int getPosition()
+
+TextUI : +void displayMessage(String message)
+TextUI : +String getUserInput(String message)
+
+@enduml

@@ -1,0 +1,18 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+'autonumber
+participant Game as game
+participant Board   as board
+participant FileIO as io
+participant Field as field
+
+
+game -> io : readFileData()
+io -> game : String[] data
+game -> board : new(data)
+board -> board: createFields(data)
+    loop 40
+board -> field: new(id, label, type cost, income, seriesID)
+
+@enduml
