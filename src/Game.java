@@ -26,7 +26,8 @@ public class Game {
         while (!input.equalsIgnoreCase("Q")){
 
             this.currentPlayer = this.players.get(next);
-            textUI.displayMessage(this.currentPlayer + "'s tur");
+            textUI.displayMessage(this.currentPlayer.getName() + "'s tur");
+
             takeTurn();
             next++;
             input = textUI.getUserInput("Klar til en ny runde? \n Tast C for continue eller Q for quit" );
@@ -82,7 +83,7 @@ public class Game {
     private void createPlayers(ArrayList<String> data){
 
         for (String s : data) {
-            String[] values = s.split(": "); //split arrayet så vi får adskildt de to værdier
+            String[] values = s.split(", "); //split arrayet så vi får adskildt de to værdier
             int balance;
 
             if (values.length > 1) {
