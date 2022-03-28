@@ -54,7 +54,7 @@ public class FileIO {
 
         StringBuilder data = new StringBuilder();
         for(Player p : players){
-            data.append(p.getName()).append(":").append(p.getBalance()).append(":").append(p.getCurrentPosition()).append("\n");
+            data.append(p.getName()).append(", ").append(p.getBalance()).append(", ").append(p.getCurrentPosition()).append("\n");
         }
         FileWriter writer= null;
 
