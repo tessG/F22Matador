@@ -82,7 +82,7 @@ public class Game {
      private void createPlayers(ArrayList<String> data){
 
          for (String s : data) {
-             String[] values = s.split(": "); //split arrayet så vi får adskildt de to værdier
+             String[] values = s.split(", "); //split arrayet så vi får adskildt de to værdier
              int balance;
 
              if (values.length > 1) {
