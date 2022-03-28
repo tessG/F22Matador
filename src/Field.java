@@ -13,7 +13,7 @@ abstract public class Field {
     public Field(int id, String label, int cost, int income) {
         this.id = id;
         this.label = label;
-      //  this.fieldType = fieldType;
+
         this.cost = cost;
         this.income = income;
 
@@ -27,9 +27,9 @@ abstract public class Field {
 
     public String processResponse(Player player, String response) {
         String message = "";
-        if (response.equalsIgnoreCase("Y")) {
+        if (response.equalsIgnoreCase("A")) {
             message =  this.onAccept(player);
-        } else {
+        } else if (response.equalsIgnoreCase("R")) {
             message =  this.onReject(player);
         }
         return message;
