@@ -5,8 +5,8 @@ This is a project implemented by students following an object oriented design do
 The project is used to demonstrate principles of object oriented programming (as well as analysis and design), to first year students of a CS education.
 
 
-Levels and objectives
-1. Client class and Domain class (```Main - BankAccount```)<br />
+### Levels and objectives
+#### 1. Client class and Domain class (```Main - BankAccount```)<br />
 How one class will hold an instance of another class and use it's methods to get things done.
 2. Utility classes (```TextUI, FileIO```)<br />
 How we have classes that are not part of the domain, and should be coded as generic helper modules that can be reused on differenc projects
