@@ -19,9 +19,9 @@ How classes can share implementations (inheritance) or promise to implement cert
 
 
 
-With each level, we include new iterations on previous leves:
+With each level, we include new iterations on previous leves (some more vigourusly than others):
 * week 1: level 1
 * week 2: level 2, 1
 * week 3: level 3, 2, 1
-* week 4: level 4, 3, 2, 1
-* week 5: level 5, 4, 3, 2, 1
+* week 4: level 4, (3), 2, 1
+* week 5: level 5, 4, (3), 2, 1
