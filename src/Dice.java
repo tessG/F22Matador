@@ -2,7 +2,6 @@
 import java.util.Random;
 
 public class Dice {
-
     public int[] rollDice(){
         int[] arr = new int[2];
         Random rd = new Random();
