@@ -6,7 +6,7 @@ The project is used to demonstrate principles of object oriented programming (as
 
 
 ### Levels and objectives
- 1. **Client class and Domain class** (```Main - BankAccount```)<br />
+1. **Client class and Domain class** (```Main - BankAccount```)<br />
 How one class will hold an instance of another class and use it's methods to get things done.
 2. **Utility classes** (```TextUI, FileIO```)<br />
 How we have classes that are not part of the domain, and should be coded as generic helper modules that can be reused on differenc projects
@@ -16,3 +16,12 @@ How analysing the functional requirements should uncover the most important enti
 How the structure of classes are connected through collections (Game - Player - BankAccount), (Game - Board - Field)
 5. **Abstraction** (```Field < Property < Plot```).<br />
 How classes can share implementations (inheritance) or promise to implement certain behaviours (interface) to enable polymorphism.
+
+
+
+With each level, we include new iterations on previous leves:
+week 1: level 1
+week 2: level 2, 1
+week 3: level 3, 2, 1
+week 4: level 4, 3, 2, 1
+week 5: level 5, 4, 3, 2, 1
