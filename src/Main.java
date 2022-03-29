@@ -20,8 +20,6 @@
     // læg player i Game.players
 
 
-//NEXT
-
 // Add a Board class with String[] fielddata in constructor
 
 
@@ -31,8 +29,8 @@ public class Main {
     public static void main(String[] args) {
 	    // instantier Game
         game = new Game();
-      //  game.startGame();
-        System.out.println(game.players);
+        game.playGame();
+
     }
 
 }
