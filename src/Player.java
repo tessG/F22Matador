@@ -37,7 +37,7 @@ public class Player {
     }
 
 
-    ///Helenas gruppe
+
     public void buyProperty(int amount, int id){
         this.account.doTransaction(-amount);
     }
