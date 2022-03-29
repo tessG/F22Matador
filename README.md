@@ -7,7 +7,7 @@ The project is used to demonstrate principles of object oriented programming (as
 
 Levels and objectives
 1. Client class and Domain class (Main - BankAccount)
-  How one class will hold an instance of another class and use it's methods to get things done.
+   How one class will hold an instance of another class and use it's methods to get things done.
 2. Utility classes (TextUI, FileIO)
   How we have classes that are not part of the domain, and should be coded as generic helper modules that can be reused on differenc projects
 3. Object analysis (Game, Player, Board, Field)
