@@ -11,16 +11,35 @@ public class Game {
 
     public Game() {
         gameSetup();
-        runGameLoop();
-        endGame();
     }
 
-    private void endGame() {
-      //  fileIO.saveGame(players);
+    /*
+     *    name: gameSetup
+     *    description: loads both game state data (for creating players) and data for building the board
+     *                 if no state data is found, user will be asked for player names
+     *
+     */
+    private void gameSetup() {
+        //**********************
+        // Load af spiller data
+        // **********************
+        ArrayList<String> data;
+        data =  fileIO.readGameData();
+        if(data == null){
+
+            data = textUI.getPlayerNames("Skriv spillernavn. Tast Q for at quitte");
+        }
+        this.createPlayers(data);
+        //**********************
+        // Load af felt data
+        // **********************
+        String[] fieldData = fileIO.readFieldData();
+        board = new Board(fieldData);
+
     }
 
 
-    private void runGameLoop() {
+    public void playGame() {
         int next = 0;
         String input = "";
         while (!input.equalsIgnoreCase("Q")){
@@ -29,33 +48,15 @@ public class Game {
             textUI.displayMessage(this.currentPlayer.getName() + "'s tur");
 
             takeTurn();
+
             next++;
             input = textUI.getUserInput("Klar til en ny runde? \n Tast C for continue eller Q for quit" );
 
         }
         textUI.displayMessage("Tak for denne gang");
+        endGame();
     }
 
-    private void gameSetup() {
-        //**********************
-        // Load af spiller data
-        // **********************
-        ArrayList<String> data;
-        data =  fileIO.readGameData();
-        if(data == null){
-            System.out.println("vi fandt ikke noget data, spørg brugeren");
-            data = textUI.getPlayerNames("Skriv spillernavn. Tast Q for at quitte");
-        }
-        this.createPlayers(data);
-
-
-        //**********************
-        // Load af felt data
-        // **********************
-        String[] fieldData = fileIO.readFieldData();
-        board = new Board(fieldData);
-
-    }
 
     /**
      * Kast terninger
@@ -74,7 +75,6 @@ public class Game {
         int position = currentPlayer.updatePosition(diceValue);
         Field f = board.getField(position);
         String decisionRequest = f.onLand(currentPlayer);
-
         String response = textUI.getUserInput(decisionRequest);
         String processedResponse = f.processResponse(currentPlayer, response);
         System.out.println(processedResponse);
@@ -87,8 +87,7 @@ public class Game {
             int balance;
 
             if (values.length > 1) {
-                balance = Integer.parseInt(values[1]); // todo: hvis values[1] == null, skal den sættes til 30000 (maxbeløb)
-
+                balance = Integer.parseInt(values[1]);
             } else {
                 balance = Integer.parseInt("30000");
             }
@@ -101,39 +100,14 @@ public class Game {
     }
 
 
-    /**
-     * Kast terninger
-     * Vis hvad der blev slået
-     * opdater spillerens position på brættet
-     * Få fat i feltet spilleren er landet på
-     * Få fat i den besked spilleren skal se når han lander på det felt
-     * Vis beskeden og gem spillerens svar
-     * send svaret til feltet
-     * vis spillerens saldo
-     *
-     */
-  /*  private void doTurn(){
-        Player currentPlayer = players.get(0); //til test anvender vi bare den første spiller i arrayet
-        int diceValue = dice.rollDiceSum();
-        textUI.displayMessage(currentPlayer.getName() + (" slog " + diceValue));
-        //"Kjeld slog 3"
-        int currentPosition =  currentPlayer.updatePosition(diceValue);
-        Field f = board.getField(currentPosition); //
-        String decisionRequest = f.onLand();
-        String onResponseMessage = "";
-        if(f.currentOption != null){
-            String response = textUI.getUserInput(decisionRequest);
-            //"Kjeld er landet på Hvidovrevej"
-            onResponseMessage = f.processesResponse(response); //"Handling accepteret"
-        }
-        textUI.displayMessage(onResponseMessage+"\n"+currentPlayer.getName()+"'s saldo: "+currentPlayer.getBalance());
-        //Handling accepteret
-        //Kjeld's saldo: 28000
-    }*/
+
 
 
     public String getPlayers(){
         return this.players.toString();
     }
 
+    private void endGame() {
+        fileIO.saveGameData(players);
+    }
 }
