@@ -11,6 +11,7 @@ public class FileIO {
         ArrayList<String> data = new ArrayList<>();
         try {
             Scanner scan = new Scanner(file);
+            String header = scan.nextLine();
             while (scan.hasNextLine()) {
                 data.add(scan.nextLine());//“Egon: 30000”
             }
