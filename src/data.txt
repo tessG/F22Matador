@@ -1,3 +1,4 @@
+name, balance, position
 Tobias, 30000, 2
-Jesper, 30000, 2
+Jesper, 30000, 1
 Tess, 30000, 1
