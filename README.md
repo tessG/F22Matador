@@ -12,7 +12,7 @@ How one class will hold an instance of another class and use it's methods to get
 How we have classes that are not part of the domain, and should be coded as generic helper modules that can be reused on differenc projects
 #### 3. Object analysis (```Game, Player, Board, Field```)<br /> 
 How analysing the functional requirements should uncover the most important entities, candidate classes  
-#### 4. Composition (```Game.takeTurn()```)<br />
+#### 4. Composition (```game.takeTurn()```)<br />
 How the structure of classes are connected through collections (Game - Player - BankAccount), (Game - Board - Field)
 #### 5. Abstraction (```Field < Property < Plot```).<br />
 How classes can share implementations (inheritance) or promise to implement certain behaviours (interface) to enable polymorphism.
