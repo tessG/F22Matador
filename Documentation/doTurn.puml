@@ -1,0 +1,34 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+'autonumber
+participant Game as game
+participant Dice   as dice
+participant TextUI as ui
+participant Player as player
+participant Board as board
+participant Field  as field
+
+game -> dice : rollDiceSum()
+dice -> game : int diceValue
+game -> ui : displayMessage("..."+diceValue)
+game -> player: updatePosition(diceValue)
+player -> game: int newPosition
+
+game -> board : getField(newPosition)
+board -> game : Field f
+game -> field : f.onLand
+field -> game : String decisionRequest
+game -> ui : getUserInput(decisionRequest)
+ui -> ui : displayMessage(decisionRequest)
+ui -> game : String response
+game -> field : f.processesResponse(response)
+alt response Y
+    field -> field : onAccept()
+else response N
+    field -> field : onReject()
+field -> game : String onResponseMessage
+game -> ui : displayMessage(onResponseMessage + playerstatus)
+
+
+@enduml
