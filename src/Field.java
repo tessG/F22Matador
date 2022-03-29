@@ -6,7 +6,6 @@ abstract public class Field {
     protected int income;
 
 
-
     //Feltet minder om hvad for en dialog den har med spilleren
     protected String currentOption;
 
