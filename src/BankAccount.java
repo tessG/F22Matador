@@ -5,8 +5,6 @@ public class BankAccount {
         this.balance = balance;
     }
 
-
-
     public int getBalance(){
         return balance;
     }

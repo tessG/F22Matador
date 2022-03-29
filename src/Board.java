@@ -16,9 +16,8 @@ public class Board {
             int income = Integer.parseInt(tmpData[4]);
             int seriesID = Integer.parseInt(tmpData[5]);
             String fieldType = tmpData[1];
-
-
             Field field = null;
+
             switch(fieldType){
                 case "Plot":
                         field = new Plot(ID, tmpData[2], cost, income, seriesID);
