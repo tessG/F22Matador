@@ -25,7 +25,6 @@ public class TextUI {
         }
 
         return data;
-
     }
 
 
